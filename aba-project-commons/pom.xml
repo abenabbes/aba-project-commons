@@ -1,0 +1,157 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>aba.project.commons</groupId>
+  <artifactId>aba-project-commons</artifactId>
+  <version>V-1.0.0-SNAPSHOT</version>
+  <name>aba-project-commons</name>
+  <description>Projet commons pour tous les autres projets</description>
+  
+  <properties>
+	<jdk.version>1.7</jdk.version>
+	<spring.version>4.1.4.RELEASE</spring.version>
+  	<servelet.api.version>2.5</servelet.api.version>
+	<jstl.version>1.2</jstl.version>
+	<junit.version>4.11</junit.version>
+	<logback.version>1.0.13</logback.version>
+  	<jasperreports.version>5.5.0</jasperreports.version>
+		
+  	<!-- logger -->
+     <slf4j.version>1.6.1</slf4j.version>
+     <log4j.version>1.2.17</log4j.version>
+	<jcl-over-slf4j.version>1.7.5</jcl-over-slf4j.version>
+  </properties>
+  
+  <!-- 
+  	 Le paramètre scope est parfois nécessaire. Les différentes valeurs à prendre en compte sont les suivantes :
+
+    - compile : C'est la valeur par défaut, la dépendance sera toujours disponible dans le classpath.
+    - provided : Indique que la dépendance est nécessaire pour la compilation mais sera fournie par le container ou le JDK et donc ne sera pas fournie dans le package.
+    - runtime : Indique que la dépendance est nécessaire pour l'exécution mais pas pour la compilation.
+    - test : Indique que la dépendance est nécessaire pour la compilation et l'exécution des tests unitaires.
+  	
+   -->
+  <dependencies>
+        <!-- ************** SPRING ************** -->
+        <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- Spring web -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<!-- ************** JasperReport ************** -->
+		<dependency>
+		    <groupId>net.sf.jasperreports</groupId>
+		    <artifactId>jasperreports</artifactId>
+		    <version>5.5.0</version>
+		    <exclusions>
+		    	<exclusion>
+		    		<artifactId>spring-context</artifactId>
+		    		<groupId>org.springframework</groupId>
+		    	</exclusion>
+		    </exclusions>
+		</dependency>
+		
+		<!-- ************** jstl ************** -->
+		
+		<!-- JSP Library -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>${jstl.version}</version>
+		</dependency>
+
+    	<!-- ************** LOGGER ************** -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+<!--         <dependency> -->
+<!-- 			<groupId>ch.qos.logback</groupId> -->
+<!-- 			<artifactId>logback-classic</artifactId> -->
+<!-- 			<version>${logback.version}</version> -->
+<!-- 		</dependency> -->
+        <!-- ************** Unit Test ************** -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
+  </dependencies>
+  
+  <build>
+    <finalName>aba-project-commons</finalName>
+    
+  	<plugins>
+  		<!-- ===== pluguin maven pour compileravec java 7 ==== -->
+  		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.2</version>
+			<configuration>
+				<source>${jdk.version}</source>
+				<target>${jdk.version}</target>
+			</configuration>
+		  </plugin>
+		  
+		  <!-- ===== pluguin maven pour compileravec java 7 ==== -->
+<!-- 		  <plugin> -->
+<!--               <groupId>org.apache.maven.plugins</groupId> -->
+<!--               <artifactId>maven-war-plugin</artifactId> -->
+<!--               <version>2.4</version> -->
+<!--               <configuration> -->
+<!--                   <warSourceDirectory>src/main/webapp</warSourceDirectory> -->
+<!--                   <warName>aba-project-commons</warName> -->
+<!--                   <failOnMissingWebXml>false</failOnMissingWebXml> -->
+<!--               </configuration> -->
+<!--           </plugin> -->
+  	
+  	</plugins>
+  
+  </build>
+</project>
